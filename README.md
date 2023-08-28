@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Features implemented in the smart contract
 
 The smart contract implements a TikTok-like platform on the Ethereum blockchain, allowing users to create, like, and dislike videos. It features video creation with captions and URLs, video liking and disliking by users, tracking of user likes to prevent duplicate actions, and the ability to retrieve video information and counts.
