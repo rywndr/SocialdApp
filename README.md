@@ -1,34 +1,23 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Features implemented in the smart contract
 
-First, run the development server:
+The smart contract implements a TikTok-like platform on the Ethereum blockchain, allowing users to create, like, and dislike videos. It features video creation with captions and URLs, video liking and disliking by users, tracking of user likes to prevent duplicate actions, and the ability to retrieve video information and counts.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Overview of the different web framework and libraries used in your application and how they were used
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+My application is a full-stack web app built with Next.js, a React framework that enables server-side rendering and dynamic routing. I use various libraries to enhance the user interface and functionality, such as rainbowkit for connecting wallets, react-icons for adding icons, react-modal for displaying modals, ethers and wagmi for interacting with Ethereum, and javascript-time-ago and truncate-eth-address for formatting time and addresses.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### MainView
+![image](https://github.com/rywndr/SocialdApp/assets/88234565/9089316e-7409-449f-9c38-28f2803cddc6)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Upload New Video
+![image](https://github.com/rywndr/SocialdApp/assets/88234565/710ed083-985f-4e9b-9419-e254393e36fc)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### Liking a Video
+![image](https://github.com/rywndr/SocialdApp/assets/88234565/2ebd276c-faab-41e5-a29d-a054f7911354)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Live dApp view
+[Live Demo](https://tiktokdapp.vercel.app/)
