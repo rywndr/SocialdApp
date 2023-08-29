@@ -1,6 +1,6 @@
 ## Features implemented in the smart contract
 
-The smart contract implements a TikTok-like platform on the Ethereum blockchain, allowing users to create, like, and dislike videos. It features video creation with captions and URLs, video liking and disliking by users, tracking of user likes to prevent duplicate actions, and the ability to retrieve video information and counts.
+The smart contract implements a TikTok-like platform on the Ethereum blockchain, allowing users to create, like, and dislike videos. It features video creation with captions and URLs, video liking and disliking by users, tracking of user likes to prevent duplicate actions, and the ability to retrieve video information and counts, view the smart contract code [here](https://github.com/rywndr/SocialdApp/blob/main/contracts/Tiktok.sol)
 
 
 ## Overview of the different web framework and libraries used in your application and how they were used
@@ -14,7 +14,7 @@ My application is a full-stack web app built with Next.js, a React framework tha
 ![image](https://github.com/rywndr/SocialdApp/assets/88234565/ed5b318f-9234-41c6-a845-8bc4b3933b75)
 
 ### Liking a Video
-![image](https://github.com/rywndr/SocialdApp/assets/88234565/2ebd276c-faab-41e5-a29d-a054f7911354)
+![image](https://github.com/rywndr/SocialdApp/assets/88234565/6d1ba5ec-92bc-4a92-b77a-aab71155a17d)
 
 ### Live dApp view
 [Live Demo](https://tiktokdapp.vercel.app/)
