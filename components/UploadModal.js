@@ -1,66 +1,40 @@
-import React, { useState } from 'react'; // Import React
-import style from '../styles/UploadModal.module.css';
-import { useAppContext } from '../context/context';
-import toast from 'react-hot-toast';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { IoIosMusicalNotes } from 'react-icons/io';
+import style from '../styles/Footer.module.css';
+import { useAccount } from 'wagmi';
 
-const UploadModal = ({ setNewVideoShow }) => {
-  // Receive setNewVideoShow as a prop
-  const [caption, setCaption] = useState('');
-  const [videoUrl, setVideoUrl] = useState('');
-  const { createVideo } = useAppContext();
+const Footer = ({ caption }) => {
+  const [userAccount, setUserAccount] = useState('');
+  const [truncatedAccount, setTruncatedAccount] = useState('');
 
-  const handleSubmit = async event => {
-    event.preventDefault();
-    if (!caption || !videoUrl) return;
+  const { address } = useAccount();
 
-    toast.promise(createVideo(caption, videoUrl), {
-      loading: 'Uploading Video... ⏳',
-      success: 'Video Uploaded! 🎉',
-      error: 'Something went wrong! 😢',
-    });
-  };
+  useEffect(() => {
+    setUserAccount(address);
+    setTruncatedAccount(`${address.slice(0, 4)}...${address.slice(-4)}`);
+  }, [address]);
 
   return (
-    <div className={style.wrapper}>
-      <div className={style.title}>Upload New Video</div>
-      <div className={style.inputField}>
-        <div className={style.inputTitle}>Caption</div>
-        <div className={style.inputContainer}>
-          <input
-            className={style.input}
-            type="text"
-            value={caption}
-            onChange={event => setCaption(event.target.value)}
-          />
+    <div className={style.footer}>
+      <div className={style.footerText}>
+        <h3>@{truncatedAccount}</h3>
+        <p>{caption}</p>
+        <div className={style.footerTicker}>
+          <IoIosMusicalNotes className={style.footerIcon} />
+          <p>Music Title</p>
         </div>
       </div>
-      <div className={style.inputField}>
-        <div className={style.inputTitle}>Video URL</div>
-        <div className={style.inputContainer}>
-          <input
-            className={style.input}
-            type="text"
-            value={videoUrl}
-            onChange={event => setVideoUrl(event.target.value)}
-          />
-        </div>
-      </div>
-      <div className={style.modalButtons}>
-        <button
-          onClick={() => setNewVideoShow(false)} // Call the function to close the modal
-          className={`${style.button} ${style.cancelButton}`}
-        >
-          Cancel
-        </button>
-        <button
-          onClick={handleSubmit}
-          className={`${style.button} ${style.createButton}`}
-        >
-          Create New
-        </button>
+      <div className={style.footerRecord}>
+        <Image
+          src="https://static.thenounproject.com/png/934821-200.png"
+          alt="vinyl record"
+          width={50}
+          height={50}
+        />
       </div>
     </div>
   );
 };
 
-export default UploadModal;
+export default Footer;
