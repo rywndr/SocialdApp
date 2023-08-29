@@ -1,40 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { IoIosMusicalNotes } from 'react-icons/io';
-import style from '../styles/Footer.module.css';
-import { useAccount } from 'wagmi';
+import React, { useState } from 'react';
+import style from '../styles/UploadModal.module.css';
+import { useAppContext } from '../context/context';
+import toast from 'react-hot-toast';
 
-const Footer = ({ caption }) => {
-  const [userAccount, setUserAccount] = useState('');
-  const [truncatedAccount, setTruncatedAccount] = useState('');
+const UploadModal = ({ setNewVideoShow }) => {
+  const [caption, setCaption] = useState('');
+  const [videoUrl, setVideoUrl] = useState('');
+  const { createVideo } = useAppContext();
+  const [showModal, setShowModal] = useState(true);
 
-  const { address } = useAccount();
+  const handleSubmit = async event => {
+    event.preventDefault();
+    if (!caption || !videoUrl) return;
 
-  useEffect(() => {
-    setUserAccount(address);
-    setTruncatedAccount(`${address.slice(0, 4)}...${address.slice(-4)}`);
-  }, [address]);
+    toast
+      .promise(createVideo(caption, videoUrl), {
+        loading: 'Creating New Post... ⏳',
+        success: 'Post Created Successfully! 🎉',
+        error: 'Something went wrong! 😢',
+      })
+      .then(() => {
+        setShowModal(false);
+        setNewVideoShow(false); // Close the modal using the prop
+      });
+  };
 
   return (
-    <div className={style.footer}>
-      <div className={style.footerText}>
-        <h3>@{truncatedAccount}</h3>
-        <p>{caption}</p>
-        <div className={style.footerTicker}>
-          <IoIosMusicalNotes className={style.footerIcon} />
-          <p>Music Title</p>
+    <div className={style.wrapper}>
+      {showModal && (
+        <div className={style.modal}>
+          {' '}
+          {/* Render modal only if showModal is true */}
+          <div className={style.title}>New Post</div>
+          <div className={style.inputField}>
+            <div className={style.inputTitle}>Write a caption...</div>
+            <div className={style.inputContainer}>
+              <input
+                className={style.input}
+                type="text"
+                value={caption}
+                onChange={event => setCaption(event.target.value)}
+              />
+            </div>
+          </div>
+          <div className={style.inputField}>
+            <div className={style.inputTitle}>Video URL</div>
+            <div className={style.inputContainer}>
+              <input
+                className={style.input}
+                type="text"
+                value={videoUrl}
+                onChange={event => setVideoUrl(event.target.value)}
+              />
+            </div>
+          </div>
+          <div className={style.modalButtons}>
+            <button
+              onClick={() => {
+                setShowModal(false);
+                setNewVideoShow(false); // Call the function to close the modal
+              }}
+              className={`${style.button} ${style.cancelButton}`}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSubmit}
+              className={`${style.button} ${style.createButton}`}
+            >
+              Post
+            </button>
+          </div>
         </div>
-      </div>
-      <div className={style.footerRecord}>
-        <Image
-          src="https://static.thenounproject.com/png/934821-200.png"
-          alt="vinyl record"
-          width={50}
-          height={50}
-        />
-      </div>
+      )}
     </div>
   );
 };
 
-export default Footer;
+export default UploadModal;
