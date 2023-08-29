@@ -1,26 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { IoIosMusicalNotes } from 'react-icons/io';
 import style from '../styles/Footer.module.css';
+import { useAccount } from 'wagmi';
 
-const truncateEthAddress = address => {
-  if (!address) {
-    return '';
-  }
-  const match = address.match(
-    /^0x[a-fA-F0-9]{4}([a-fA-F0-9]{36})[a-fA-F0-9]{4}$/
-  );
-  if (!match) {
-    return address;
-  }
-  return `0x${match[1].substring(0, 4)}...${match[1].substring(32)}`;
-};
+const Footer = ({ caption }) => {
+  const [userAccount, setUserAccount] = useState('');
+  const [truncatedAccount, setTruncatedAccount] = useState('');
 
-const Footer = ({ address, caption }) => {
+  const { address } = useAccount();
+
+  useEffect(() => {
+    setUserAccount(address);
+    setTruncatedAccount(`${address.slice(0, 4)}...${address.slice(-4)}`);
+  }, [address]);
+
   return (
     <div className={style.footer}>
       <div className={style.footerText}>
-        <h3>@{truncateEthAddress(address)}</h3>
+        <h3>@{truncatedAccount}</h3>
         <p>{caption}</p>
         <div className={style.footerTicker}>
           <IoIosMusicalNotes className={style.footerIcon} />
@@ -30,7 +28,7 @@ const Footer = ({ address, caption }) => {
       <div className={style.footerRecord}>
         <Image
           src="https://static.thenounproject.com/png/934821-200.png"
-          alt="Record"
+          alt="vinyl record"
           width={50}
           height={50}
         />
