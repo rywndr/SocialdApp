@@ -5,7 +5,7 @@ The smart contract implements a TikTok-like platform on the Ethereum blockchain,
 
 ## Overview of the different web framework and libraries used in your application and how they were used
 
-My application is a full-stack web app built with Next.js, a React framework that enables server-side rendering and dynamic routing. I use various libraries to enhance the user interface and functionality, such as rainbowkit for connecting wallets, react-icons for adding icons, react-modal for displaying modals, ethers and wagmi for interacting with Ethereum, and javascript-time-ago and truncate-eth-address for formatting time and addresses.
+My application is a full-stack web app built with Next.js, a React framework that enables server-side rendering and dynamic routing. I use various libraries to enhance the user interface and functionality, such as rainbowkit for connecting wallets, react-icons for adding icons, react-modal for displaying modals, ethers and wagmi for interacting with Ethereum, and javascript-time-agofor formatting time.
 
 ### MainView
 ![image](https://github.com/rywndr/SocialdApp/assets/88234565/86e5aded-72b8-4231-bee0-453bb04f3337)
